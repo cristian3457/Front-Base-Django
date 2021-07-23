@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}CATEGORIAS{% endblock %}</title>
+</head>
+
+<body>
+    {% block cuerpo %}
+    <div class="container mt-4 mb-4">
+        <h1 class="text-success mb-3 text-center">CATEGORIAS REGISTRADOS</h1>
+        <a href="RegistrarCategoria" class="btn btn-success my-2">Registrar categoria</a>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Categoría</th>
+                    <th scope="col">Descripción</th>
+                    <th scope="col">Imagen</th>
+                    <th scope="col">Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cat in categorias %}
+                <tr>
+                    <th scope="row">{{forloop.counter}}</th>
+                    <td>{{cat.categoria}}</td>
+                    <td width="400px">
+                        {{cat.descripcion}}
+                    </td>
+                    <td>
+                        {% if cat.img %}
+                        <img width="40" src="http://127.0.0.1:7000/media/{{cat.img}}" alt="imagen categoria"> {% else %}
+                        <img width="40" src="http://127.0.0.1:7000/media/no_image.jpg" alt="imagen categoria"> {% endif %}
+                    </td>
+                    <td>
+                        <a href="ActualizarCategoria/{{cat.id}}" class="btn btn-primary">Actualizar</a>
+                        <a href="EliminarCategoria/{{cat.id}}" class="btn btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endblock %}
+</body>
+
+</html>

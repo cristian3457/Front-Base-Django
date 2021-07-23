@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}PRODUCTOS{% endblock %}</title>
+</head>
+
+<body>
+    {% block cuerpo %}
+    <div class="container mt-4 mb-4">
+        <h1 class="text-success mb-3 text-center">PRODUCTOS REGISTRADOS</h1>
+        <a href="{% url 'Registrar Producto' %}" class="btn btn-success my-2">Registrar producto</a>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Producto</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Descripción</th>
+                    <th scope="col">Imagen</th>
+                    <th scope="col">Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for prod in productos %}
+                <tr>
+                    <th scope="row">{{forloop.counter}}</th>
+                    <td>{{prod.producto}}</td>
+                    <td>{{prod.precio}}</td>
+                    <td>
+                        {{prod.descripcion}}
+                    </td>
+                    <td>
+                        {% if prod.img %}
+                        <img width="40" src="http://127.0.0.1:7000/media/{{prod.img}}" alt="imagen producto"> {% else %}
+                        <img width="40" src="http://127.0.0.1:7000/media/no_image.jpg" alt="imagen producto"> {% endif %}
+                    </td>
+                    <td>
+                        <a href="ActualizarProducto/{{prod.id}}" class="btn btn-primary">Actualizar</a>
+                        <a href="EliminarProducto/{{prod.id}}" class="btn btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endblock %}
+</body>
+
+</html>
