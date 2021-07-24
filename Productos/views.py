@@ -1,3 +1,4 @@
+from Usuarios.services import actualizarPassword
 from django.shortcuts import redirect, render
 from .services import get_subcategoriasID,eliminar_subcategoria, eliminar_categoria, eliminar_producto, get_productos, get_producto, registrar_producto, actualizar_producto, get_categorias, get_subcategorias, registrar_categoria, get_categoria, actualizar_categoria, actualizar_subcategoria, registrar_subcategoria, get_subcategoria
 
@@ -5,8 +6,17 @@ from .services import get_subcategoriasID,eliminar_subcategoria, eliminar_catego
 # Create your views here.
 
 def home(request):
-    productos = get_productos
-    return render(request,'home.html',{'productos':productos})
+    if request.session['usuario']:
+        if request.method == 'POST':
+            password = request.POST.get("password")
+            username = request.session['usuario']['username']
+            id = request.session['usuario']['id']
+            respuesta = actualizarPassword(id,username, password)
+            if respuesta:
+                return render(request,'home.html',{'actualizado':True})
+        return render(request,'home.html')
+    else:
+        return redirect('/')
 
 def actualizar(request, id):
     producto = get_producto(id)

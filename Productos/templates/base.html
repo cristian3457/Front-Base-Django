@@ -17,10 +17,11 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-link {% if request.path == '/productos/' %}active{% endif %}" href="{% url 'Home' %}">Home</a>
-                <a class="nav-link {% if request.path == '/productos/Productos/' %}active{% endif %}" href="{% url 'Productos' %}">Productos</a>
-                <a class="nav-link {% if request.path == '/productos/Categorias/' %}active{% endif %}" href="{% url 'Categorias' %}">Categorías</a>
-                <a class="nav-link {% if request.path == '/productos/Subcategorias/' %}active{% endif %}" href="{% url 'Subcategorias' %}">Subcategorías</a>
+                <a class="nav-link {% if request.path == '/home' %}active{% endif %}" href="{% url 'Home' %}">Home</a>
+                <a class="nav-link {% if request.path == '/Productos/' %}active{% endif %}" href="{% url 'Productos' %}">Productos</a>
+                <a class="nav-link {% if request.path == '/Categorias/' %}active{% endif %}" href="{% url 'Categorias' %}">Categorías</a>
+                <a class="nav-link {% if request.path == '/Subcategorias/' %}active{% endif %}" href="{% url 'Subcategorias' %}">Subcategorías</a>
+                <a href="/cerrarSesion" class="btn btn-danger mx-5">Cerrar Sesion</a>
             </div>
         </div>
     </nav>

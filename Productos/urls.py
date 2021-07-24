@@ -1,7 +1,8 @@
 from django.urls import path
-from .views import actualizarSubcategoria, eliminarCategoria, eliminarSubcategoria, home,actualizar, registrar, eliminar, productos, categorias, registrarSubcategoria, select, subcategorias, registrarCategoria, actualizarCategoria
+from Usuarios.views import logout
+from .views import actualizarSubcategoria, eliminarCategoria, eliminarSubcategoria, home,actualizar, registrar, eliminar, productos, categorias, registrarSubcategoria, subcategorias, registrarCategoria, actualizarCategoria
 urlpatterns = [
-    path('', home, name='Home'),
+    path('home', home, name='Home'),
     path('Productos/',productos, name='Productos'),
     path('Productos/RegistrarProducto/',registrar, name='Registrar Producto'),
     path('Productos/ActualizarProducto/<int:id>',actualizar, name='Actualizar Producto'),
@@ -14,5 +15,5 @@ urlpatterns = [
     path('Subcategorias/RegistrarSubcategoria/',registrarSubcategoria, name='Registrar Subcategoria'),
     path('Subcategorias/ActualizarSubcategoria/<int:id>',actualizarSubcategoria, name='Actualizar Subcategoria'),
     path('Subcategorias/EliminarSubcategoria/<int:id>',eliminarSubcategoria, name='Eliminar Subcategoria'),
-    path('Select',select, name='select'),
+    path('cerrarSesion',logout, name='Cerrar Sesion'),
 ]
