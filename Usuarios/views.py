@@ -8,10 +8,10 @@ def iniciarSesion(request):
         password = request.POST.get('password')
         respuesta = iniciar_sesion(usuario,password)
         respuesta = respuesta.json()
-        print("respuesta:",respuesta)
         if respuesta['response']:
             request.session['usuario'] = respuesta['data']
-            print("respuesta:",respuesta)
+            request.session['token'] = respuesta['token']
+            print("token:",request.session['token'])
             return redirect("/home")
         else:
             return redirect("/?novalido")

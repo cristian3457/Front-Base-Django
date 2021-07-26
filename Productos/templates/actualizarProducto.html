@@ -112,10 +112,10 @@
             if (categoriaSeleccionada !== '') {
                 // Se seleccionan las subcategorías y se ordenan
                 categoriaSeleccionada = subcats[categoriaSeleccionada]
-                console.log(categoriaSeleccionada);
                 if (categoriaSeleccionada) {
                     categoriaSeleccionada.sort()
                         // Insertamos los pueblos
+                    categoriaSeleccionada.shift();
                     categoriaSeleccionada.forEach(function(subcategoria) {
                         let opcion = document.createElement('option')
                         opcion.value = subcategoria
