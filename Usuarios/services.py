@@ -1,10 +1,11 @@
 import requests
+from EjemploFront.settings import URL_SERVER
 def iniciar_sesion(usuario, password):
     usuario = {
         "usuario": usuario,
         "password": password
     }
-    response = requests.post('http://127.0.0.1:7000/usuarios/login/', usuario)
+    response = requests.post(URL_SERVER+'usuarios/login/', usuario)
     return response
 def get_token(token):
     headers = {
@@ -13,7 +14,7 @@ def get_token(token):
     return headers
 
 def valida_token(datos):
-    response = requests.post('http://127.0.0.1:7000/usuarios/validaToken/', datos)
+    response = requests.post(URL_SERVER+'usuarios/validaToken/', datos)
     return response.json()
 
 def actualizarPassword(id,usuario, password, token):
@@ -22,7 +23,7 @@ def actualizarPassword(id,usuario, password, token):
         "username": usuario,
         "password": password
     }
-    response = requests.put('http://127.0.0.1:7000/usuarios/usuario/'+str(id)+'/', usuario, headers=get_token(token))
+    response = requests.put(URL_SERVER+'usuarios/usuario/'+str(id)+'/', usuario, headers=get_token(token))
     print(response.status_code)
     if( response.status_code == 200 ):
         return True

@@ -1,4 +1,5 @@
 import requests
+from EjemploFront.settings import URL_SERVER
 
 def generate_request(url, headers=""):
     response = requests.get(url, headers = headers)
@@ -7,7 +8,7 @@ def generate_request(url, headers=""):
 
 def get_productos(token):
     headers = get_token(token)
-    response = generate_request('http://127.0.0.1:7000/productos/producto/', headers= headers)
+    response = generate_request(URL_SERVER+'productos/producto/', headers= headers)
     if response:
         productos = response
         return productos
@@ -15,7 +16,7 @@ def get_productos(token):
 
 def get_producto(id, token):
     headers = get_token(token)
-    response = generate_request('http://127.0.0.1:7000/productos/producto/'+str(id), headers= headers)
+    response = generate_request(URL_SERVER+'productos/producto/'+str(id), headers= headers)
     if response:
         producto = response
         return producto
@@ -23,7 +24,7 @@ def get_producto(id, token):
 
 def get_categorias(token):
     headers = get_token(token)
-    response = generate_request('http://127.0.0.1:7000/categorias/categoria/',headers= headers)
+    response = generate_request(URL_SERVER+'categorias/categoria/',headers= headers)
     if response:
         categorias = response
         return categorias
@@ -31,7 +32,7 @@ def get_categorias(token):
 
 def get_categoria(id,token):
     headers = get_token(token)
-    response = generate_request('http://127.0.0.1:7000/categorias/categoria/'+str(id),headers= headers)
+    response = generate_request(URL_SERVER+'categorias/categoria/'+str(id),headers= headers)
     if response:
         categoria = response
         return categoria
@@ -39,7 +40,7 @@ def get_categoria(id,token):
 
 def get_subcategorias(token):
     headers = get_token(token)
-    response = generate_request('http://127.0.0.1:7000/subcategorias/subcategoria/',headers= headers)
+    response = generate_request(URL_SERVER+'subcategorias/subcategoria/',headers= headers)
     if response:
         subcategorias = response
         subcat = []
@@ -53,7 +54,7 @@ def get_subcategorias(token):
 
 def get_subcategoriasID(token):
     headers = get_token(token)
-    response = generate_request('http://127.0.0.1:7000/subcategorias/subcategoria/',headers= headers)
+    response = generate_request(URL_SERVER+'subcategorias/subcategoria/',headers= headers)
     if response:
         subcategorias = response
         return subcategorias
@@ -61,7 +62,7 @@ def get_subcategoriasID(token):
 
 def get_subcategoria(id, token):
     headers = get_token(token)
-    response = generate_request('http://127.0.0.1:7000/subcategorias/subcategoria/'+str(id),headers= headers)
+    response = generate_request(URL_SERVER+'subcategorias/subcategoria/'+str(id),headers= headers)
     if response:
         subcategoria = response
         return subcategoria
@@ -75,7 +76,7 @@ def get_token(token):
 
 def registrar_producto(producto, token):
     headers = get_token(token)
-    response = requests.post('http://127.0.0.1:7000/productos/producto/', producto,headers= headers)
+    response = requests.post(URL_SERVER+'productos/producto/', producto,headers= headers)
     if response:
         producto = response
         return producto
@@ -83,7 +84,7 @@ def registrar_producto(producto, token):
 
 def actualizar_producto(id,producto, token):
     headers = get_token(token)
-    response = requests.put('http://127.0.0.1:7000/productos/producto/'+str(id)+'/', producto, headers= headers)
+    response = requests.put(URL_SERVER+'productos/producto/'+str(id)+'/', producto, headers= headers)
     if response:
         producto = response
         return producto
@@ -91,7 +92,7 @@ def actualizar_producto(id,producto, token):
 
 def registrar_categoria(categoria, token):
     headers = get_token(token)
-    response = requests.post('http://127.0.0.1:7000/categorias/categoria/', categoria, headers= headers)
+    response = requests.post(URL_SERVER+'categorias/categoria/', categoria, headers= headers)
     if response:
         categoria = response
         return categoria
@@ -99,7 +100,7 @@ def registrar_categoria(categoria, token):
 
 def actualizar_categoria(id,categoria, token):
     headers = get_token(token)
-    response = requests.put('http://127.0.0.1:7000/categorias/categoria/'+str(id)+'/', categoria, headers= headers)
+    response = requests.put(URL_SERVER+'categorias/categoria/'+str(id)+'/', categoria, headers= headers)
     if response:
         categoria = response
         return categoria
@@ -107,7 +108,7 @@ def actualizar_categoria(id,categoria, token):
 
 def registrar_subcategoria(subcategoria, token):
     headers = get_token(token)
-    response = requests.post('http://127.0.0.1:7000/subcategorias/subcategoria/', subcategoria, headers= headers)
+    response = requests.post(URL_SERVER+'subcategorias/subcategoria/', subcategoria, headers= headers)
     if response:
         subcategoria = response
         return subcategoria
@@ -115,7 +116,7 @@ def registrar_subcategoria(subcategoria, token):
 
 def actualizar_subcategoria(id,subcategoria, token):
     headers = get_token(token)
-    response = requests.put('http://127.0.0.1:7000/subcategorias/subcategoria/'+str(id)+'/', subcategoria, headers= headers)
+    response = requests.put(URL_SERVER+'subcategorias/subcategoria/'+str(id)+'/', subcategoria, headers= headers)
     if response:
         subcategoria = response
         return subcategoria
@@ -123,7 +124,7 @@ def actualizar_subcategoria(id,subcategoria, token):
 
 def eliminar_producto(id, token):
     headers = get_token(token)
-    url = 'http://127.0.0.1:7000/productos/producto/'+str(id)
+    url = URL_SERVER+'productos/producto/'+str(id)
     response = requests.delete(url, headers= headers)
     if response:
         print('eliminar:',response)
@@ -133,7 +134,7 @@ def eliminar_producto(id, token):
 
 def eliminar_categoria(id, token):
     headers = get_token(token)
-    url = 'http://127.0.0.1:7000/categorias/categoria/'+str(id)
+    url = URL_SERVER+'categorias/categoria/'+str(id)
     response = requests.delete(url, headers= headers)
     if response:
         categoria = response
@@ -142,7 +143,7 @@ def eliminar_categoria(id, token):
 
 def eliminar_subcategoria(id, token):
     headers = get_token(token)
-    url = 'http://127.0.0.1:7000/subcategorias/subcategoria/'+str(id)
+    url = URL_SERVER+'subcategorias/subcategoria/'+str(id)
     response = requests.delete(url, headers= headers)
     if response:
         subcategoria = response
