@@ -11,7 +11,11 @@ def get_token(token):
         'Authorization':'token ' + token
     }
     return headers
-  
+
+def valida_token(datos):
+    response = requests.post('http://127.0.0.1:7000/usuarios/validaToken/', datos)
+    return response.json()
+
 def actualizarPassword(id,usuario, password, token):
     
     usuario = {

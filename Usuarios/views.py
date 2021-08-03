@@ -7,6 +7,7 @@ def iniciarSesion(request):
         usuario = request.POST.get('usuario')
         password = request.POST.get('password')
         respuesta = iniciar_sesion(usuario,password)
+        print('respuesta:',respuesta)
         respuesta = respuesta.json()
         if respuesta['response']:
             request.session['usuario'] = respuesta['data']
